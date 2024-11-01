@@ -42,9 +42,11 @@ TODO. Connect temperature sensor to ESP32 board and expose Thermostat device to 
 
 ### Note For Relay Module
 
----The Relay module used supported 5V control signal, but ESP32 C3 board operates on 3.3V. Relay module was modified to support control signal on 3.3V (as [suggested](https://arduino.ua/prod202-modyl-rele-5v-10a-s-optorazvyazkoi) by `Kutsenko Oleksii (27.09.2023)`) by replacing R1, R2 to 1kOm instead of original 4.7kOm.---
+~~The Relay module used supported 5V control signal, but ESP32 C3 board operates on 3.3V. Relay module was modified to support control signal on 3.3V (as [suggested](https://arduino.ua/prod202-modyl-rele-5v-10a-s-optorazvyazkoi) by `Kutsenko Oleksii (27.09.2023)`) by replacing R1, R2 to 1kOm instead of original 4.7kOm.~~
 
-Relay module declared to operate on 5V, and ESP32 C3 board declared to operate on 3.3V. However, it was discovered that ESP32 C3 board having powered by `5V` pin with 5 volts power operates normally with Relay module (that expects 5V on `In` pin) even with 3.3V as output on `GPIO5` which corresponds to logical 1. By measuring voltage at the time of logical 1 on `GPIO5` I can see voltage around 3.8V, which may be enough for Relay module to switch.
+Relay module declared to operate on 5V, and ESP32 C3 board declared to operate on 3.3V. However, it was discovered that ESP32 C3 board having powered by `5V` pin operates normally with Relay module (that actually expects 5V on `In` pin) even with 3.3V as output on `GPIO5`. 
+
+Measured voltage at the time of logical 1 set on `GPIO5` seen around 3.8V, which may be enough for Relay module to switch.
 
 ## Setup
 
